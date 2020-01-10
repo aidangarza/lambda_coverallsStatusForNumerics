@@ -9,13 +9,13 @@ plugins:
 
 functions:
   news:
-    handler: handler.news
+    handler: handler.status
     events:
       - http:
-          path: /news
+          path: /status
           method: get
 
 custom:
     webpack:
       webpackConfig: 'webpack.config.js'
-      includeModules: false
+      includeModules: true

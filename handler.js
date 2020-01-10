@@ -1,11 +1,24 @@
-export function news(event, context, callback) {
+import fetch from 'node-fetch';
 
-  const happyDay = () => 'Friday'
-  const buildColor = 'green'
-  const goodNews = [`Today is ${happyDay()}`, `Build is ${buildColor}`]
+export const status = async (event) => {
+  try {
+    const response = await fetch(event.url);
 
-  callback(null, {
-    statusCode: 200,
-    body: JSON.stringify(goodNews),
-  })
-}
+    if (response.ok) {
+      const data = await response.json();
+
+      return {
+        statusCode: 200,
+        body: JSON.stringify({
+          value: data.covered_percent
+        })
+      }
+    } else {
+      throw new Error('Invalid response')
+    }
+  } catch (e) {
+    return {
+      statusCode: 500
+    }
+  }
+};
