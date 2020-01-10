@@ -1,0 +1,21 @@
+service: serverless-es6
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+
+plugins:
+  - serverless-webpack
+
+functions:
+  news:
+    handler: handler.news
+    events:
+      - http:
+          path: /news
+          method: get
+
+custom:
+    webpack:
+      webpackConfig: 'webpack.config.js'
+      includeModules: false
