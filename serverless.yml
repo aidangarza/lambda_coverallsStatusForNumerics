@@ -8,7 +8,7 @@ plugins:
   - serverless-webpack
 
 functions:
-  news:
+  status:
     handler: handler.status
     events:
       - http:

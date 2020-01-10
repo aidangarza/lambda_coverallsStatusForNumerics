@@ -1,6 +1,6 @@
 import fetch from 'node-fetch';
 
-export const status = async (event) => {
+export async function status(event) {
   try {
     const response = await fetch(event.url);
 
